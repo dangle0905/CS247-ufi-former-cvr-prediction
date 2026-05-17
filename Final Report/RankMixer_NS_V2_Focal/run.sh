@@ -8,7 +8,7 @@ export TRAIN_TF_EVENTS_PATH="${TRAIN_TF_EVENTS_PATH:-${SCRIPT_DIR}/tf_events}"
 
 python3 -u "${SCRIPT_DIR}/train.py" \
     --ns_tokenizer_type rankmixer \
-    --user_ns_tokens 6 \
+    --user_ns_tokens 5 \
     --item_ns_tokens 2 \
     --num_queries 2 \
     --num_hyformer_blocks 3 \
