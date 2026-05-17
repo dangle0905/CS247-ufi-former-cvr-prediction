@@ -2,7 +2,10 @@
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 export PYTHONPATH="${SCRIPT_DIR}:${PYTHONPATH}"
 
-# ---- Active config: RankMixer NS tokenizer (no ns_groups.json required) ----
+export TRAIN_CKPT_PATH="${TRAIN_CKPT_PATH:-${SCRIPT_DIR}/checkpoints}"
+export TRAIN_LOG_PATH="${TRAIN_LOG_PATH:-${SCRIPT_DIR}/logs}"
+export TRAIN_TF_EVENTS_PATH="${TRAIN_TF_EVENTS_PATH:-${SCRIPT_DIR}/tf_events}"
+
 python3 -u "${SCRIPT_DIR}/train.py" \
     --ns_tokenizer_type rankmixer \
     --user_ns_tokens 5 \
@@ -10,7 +13,7 @@ python3 -u "${SCRIPT_DIR}/train.py" \
     --num_queries 2 \
     --ns_groups_json "" \
     --emb_skip_threshold 1000000 \
-    --num_workers 8 \
+    --num_workers 2 \
     "$@"
 
 # ---- Alternative config: GroupNSTokenizer driven by ns_groups.json ----
